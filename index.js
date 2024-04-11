@@ -9,8 +9,11 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
-    method: ["GET", "POST"],
+    origin: [
+      "http://localhost:5173",
+      "https://warehouse-client-gilt.vercel.app/",
+    ],
+    method: ["GET", "POST", "PATCH"],
   },
 });
 
@@ -72,6 +75,7 @@ io.on("connection", (socket) => {
 //     user.userData.some((data) => data.id === recipient)
 //   )?.socketId;
 // }
+
 function findSocket(recipient) {
   return onlineUsers.find((user) =>
     user.userData.some((data) => data.id === recipient)
