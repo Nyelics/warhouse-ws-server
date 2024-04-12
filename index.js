@@ -4,12 +4,12 @@ const http = require("http");
 const {Server} = require("socket.io");
 const cors = require("cors");
 app.use(cors());
-const port = process.env.PORT || 3031;
+const port = process.env.PORT || 3001;
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://warehouse-client-gilt.vercel.app"],
+    origin: "https://warehouse-client-gilt.vercel.app",
     method: ["GET", "POST", "PATCH"],
   },
 });
