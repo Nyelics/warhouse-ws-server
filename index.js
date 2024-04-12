@@ -4,12 +4,15 @@ const http = require("http");
 const {Server} = require("socket.io");
 const cors = require("cors");
 app.use(cors());
-const port = process.env.PORT || 3001;
+const port = 3002;
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://warehouse-client-gilt.vercel.app",
+    origin: [
+      "http://localhost:5173",
+      "https://warehouse-client-gilt.vercel.app/",
+    ],
     method: ["GET", "POST", "PATCH"],
   },
 });
@@ -88,10 +91,6 @@ function replaceSocketId(recipient, newSocketId) {
     socket.isActive = true;
   }
 }
-
-app.get("/", (req, res) => {
-  res.send("Socket.IO server is running!");
-});
 
 server.listen(port, () => {
   console.log("server is running at port", port);
