@@ -92,6 +92,10 @@ function replaceSocketId(recipient, newSocketId) {
   }
 }
 
+app.get("/", (req, res) => {
+  res.send("Socket.IO server is running!");
+});
+
 server.listen(port, () => {
   console.log("server is running at port", port);
 });
